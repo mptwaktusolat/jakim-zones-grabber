@@ -11,3 +11,5 @@ Run the [jakim_parser.py](/jakim_parser.py) script. It will generate a new [new.
 Using VS Code, select both `old.json` & `new.json` and select **compare selected**. Then, verify the changes manually and save the file.
 
 Commit the changes and push to GitHub.
+
+> **Note:** Also update the file `zones.json` in [app_waktu_solat_malaysia](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/blob/master/assets/json/zones.json) as well
