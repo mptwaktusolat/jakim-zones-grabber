@@ -1,6 +1,6 @@
 # JAKIM ZONES GRABBER
 
-This is the source of truth for [MPT-Server](https://mpt-server.vercel.app) API service.
+This is the source of truth for [Waktu Solat API](https://api.waktusolat.app/locations) service.
 
 ## How to use
 
@@ -12,4 +12,5 @@ Using VS Code, select both `old.json` & `new.json` and select **compare selected
 
 Commit the changes and push to GitHub.
 
-> **Note:** Also update the file `zones.json` in [app_waktu_solat_malaysia](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/blob/master/assets/json/zones.json) as well
+> [!NOTE]
+> Also update the file `zones.json` in [app_waktu_solat_malaysia](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/blob/master/assets/json/zones.json) as well
