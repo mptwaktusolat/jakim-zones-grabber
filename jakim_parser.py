@@ -1,6 +1,18 @@
 import json
 import requests
+import os
 from bs4 import BeautifulSoup
+
+# First, read the existing locations.json if it exists
+old_data = []
+if os.path.exists('locations.json'):
+    try:
+        with open('locations.json', 'r') as file:
+            old_data = json.load(file)
+        print("Successfully loaded existing data from locations.json for comparison")
+    except Exception as e:
+        print(f"Error loading existing locations.json: {e}")
+        old_data = []
 
 # Fetch HTML content from the website
 url = 'https://www.e-solat.gov.my/'
@@ -43,17 +55,13 @@ for option in options:
             })
 
 # Write the result to a JSON file
-with open('new.json', 'w') as file:
+with open('locations.json', 'w') as file:
     json.dump(result, file, indent=2)
 
-print("Data has been written to new.json successfully.")
+print("Data has been written to locations.json successfully.")
 
-# Compare with old.json to detect zone changes
-try:
-    # Read old.json
-    with open('old.json', 'r') as file:
-        old_data = json.load(file)
-    
+# Compare with previously loaded data to detect zone changes
+if old_data:
     # Extract jakimCodes from both old and new data
     old_codes = {item['jakimCode'] for item in old_data}
     new_codes = {item['jakimCode'] for item in result}
@@ -78,9 +86,6 @@ try:
                 zone = next(item for item in old_data if item['jakimCode'] == code)
                 print(f"  - {code} - {zone['negeri']} ({zone['daerah']})")
     else:
-        print("No zone changes detected between old.json and new.json.")
-
-except FileNotFoundError:
-    print("\nWarning: old.json not found. Cannot compare for changes.")
-except Exception as e:
-    print(f"\nError when comparing with old.json: {str(e)}")
+        print("No zone changes detected between previous and current data.")
+else:
+    print("\nNo previous data available for comparison. This appears to be the first run.")
